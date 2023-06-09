@@ -24,8 +24,6 @@ if copisThingsInstalled and not copisThingsEnabled then
     --make more random later
     local selectedMod = "copis_things"
 
-    print(ModTextFileGetContent("data/"))
-
     if(dataFiles[selectedMod] ~= nil) then
         for k,v in ipairs(dataFiles[selectedMod]) do
             ModTextFileSetContent("data/"..v, ModTextFileGetContent("mods/"..selectedMod.."/data/"..v))
@@ -37,5 +35,6 @@ if copisThingsInstalled and not copisThingsEnabled then
         ModLuaFileAppend("mods/ModMimic/settings.lua", "mods/"..selectedMod.."/settings.lua")
     end
 else
-    --translation stuff
+    local copiTranslations = ""
+    ModTextFileSetContent("data/translations/common.csv", copiTranslations)
 end
