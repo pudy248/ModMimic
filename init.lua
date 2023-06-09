@@ -18,23 +18,23 @@ local dataFiles = {
 }
 
 local installedModList = {}
-for _,v in ipairs(compatibleModList) do
-    if(ModTextFileGetContent("mods/"..v.."/init.lua") ~= nil) then installedModList[#installedModList+1] = v end
+for i=1,#compatibleModList do
+    if(ModTextFileGetContent(table.concat{"mods/", compatibleModList[i], "/init.lua"}) ~= nil) then installedModList[#installedModList+1] = v end
 end
-for k,v in ipairs(compatibleModList) do
-    print("Compatible mod #"..k..": "..v)
+for i=1,#compatibleModList do
+    print(table.concat{"Compatible mod #", i, ": ", compatibleModList[i]})
 end
 
 --make more random later
 local selectedMod = "copis_things"
 
 if(dataFiles[selectedMod] ~= nil) then
-    for k,v in ipairs(dataFiles[selectedMod]) do
-        ModTextFileSetContent("data/"..v, ModTextFileGetContent("mods/"..selectedMod.."/data/"..v))
+    for i=1,#dataFiles[selectedMod] do
+        ModTextFileSetContent("data/"..dataFiles[selectedMod][i], ModTextFileGetContent(table.concat{"mods/", selectedMod, "/data/", dataFiles[selectedMod][i]}))
     end
 end
 
-ModLuaFileAppend("mods/ModMimic/init.lua", "mods/"..selectedMod.."/init.lua")
-if(ModTextFileGetContent("mods/"..selectedMod.."/settings.lua") ~= nil) then
-    ModLuaFileAppend("mods/ModMimic/settings.lua", "mods/"..selectedMod.."/settings.lua")
+ModLuaFileAppend("mods/ModMimic/init.lua", table.concat{"mods/", selectedMod, "/init.lua"})
+if(ModTextFileGetContent(table.concat{"mods/", selectedMod, "/settings.lua"}) ~= nil) then
+    ModLuaFileAppend("mods/ModMimic/settings.lua", table.concat{"mods/", selectedMod, "/settings.lua"})
 end
