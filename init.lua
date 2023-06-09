@@ -19,7 +19,7 @@ local dataFiles = {
 
 local installedModList = {}
 for i=1,#compatibleModList do
-    if(ModTextFileGetContent(table.concat{"mods/", compatibleModList[i], "/init.lua"}) ~= nil) then installedModList[#installedModList+1] = v end
+    if(ModTextFileGetContent(table.concat{"mods/", compatibleModList[i], "/init.lua"}) ~= nil) then installedModList[#installedModList+1] = compatibleModList[i] end
 end
 for i=1,#compatibleModList do
     print(table.concat{"Compatible mod #", i, ": ", compatibleModList[i]})
