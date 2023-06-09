@@ -20,7 +20,9 @@ for _,v in ipairs(enabledModList) do
     if v == "copis_things" then copisThingsEnabled = true end
 end
 
-if copisThingsInstalled and not copisThingsEnabled then
+local no_copi_override = false --for testing translations
+
+if (not no_copi_override) and copisThingsInstalled and not copisThingsEnabled then
     --make more random later
     local selectedMod = "copis_things"
 
@@ -35,6 +37,45 @@ if copisThingsInstalled and not copisThingsEnabled then
         ModLuaFileAppend("mods/ModMimic/settings.lua", "mods/"..selectedMod.."/settings.lua")
     end
 else
-    local copiTranslations = ""
-    ModTextFileSetContent("data/translations/common.csv", copiTranslations)
+    local defaultText = ModTextFileGetContent("data/translations/common.csv")
+    --print(defaultText)
+    local firstLine = true
+    local newStrings = {}
+    for line in string.gmatch(defaultText, "[^\n]+") do
+        --print(line)
+        if firstLine then 
+            newStrings[#newStrings+1] = line
+            firstLine = false
+        else
+            local firstComma = 1
+            for i = 1,string.len(line),1 do 
+                if string.sub(line, i, i) == "," then
+                    firstComma = i
+                    break 
+                end
+            end
+            local secondComma = firstComma + 1
+            for i = secondComma,string.len(line),1 do 
+                if string.sub(line, i, i) == "," then 
+                    secondComma = i
+                    break 
+                end
+            end
+            local firstPortion = string.sub(line, 1, firstComma)
+            local middlePortion = string.sub(line, firstComma + 1, secondComma - 1)
+            --print(middlePortion)
+            local rnd = math.random()
+            if rnd < 0.01 then middlePortion = "https://github.com/Ramiels/copis_things/" .. middlePortion
+            elseif rnd < 0.1 then middlePortion = "Download Copi's Things! - " .. middlePortion
+            elseif rnd < 0.12 then middlePortion = "If you download it the ads will go away... " .. middlePortion end
+            local endPortion = string.sub(line, secondComma, string.len(line))
+
+            newStrings[#newStrings+1] = firstPortion .. middlePortion .. endPortion
+        end
+    end
+    
+    local newFile = table.concat(newStrings, "\n")
+    --print(newFile)
+
+    ModTextFileSetContent("data/translations/common.csv", newFile)
 end
