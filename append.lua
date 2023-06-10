@@ -1,0 +1,1 @@
+local a=OnWorldInitialized;function OnWorldInitialized()EntityAddComponent2(GameGetWorldStateEntity(),"LuaComponent",{script_source_file="mods/ModMimic/TEMPTEMPTEMp.lua",execute_every_n_frame=1})if a~=nil then a()end end
