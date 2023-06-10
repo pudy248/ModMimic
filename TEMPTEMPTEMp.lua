@@ -1,5 +1,5 @@
 -- Setup
-local Color = dofile_once("mods/ModMimic/color.lua")
+local Color = dofile_once("mods/ImmersiveMimics/color.lua")
 Gui = Gui or GuiCreate()
 GuiIdPushString(Gui, "ModMimicPopup")
 GuiStartFrame(Gui)
@@ -156,16 +156,16 @@ for i=2,#Windows do
 
         GuiZSetForNextWidget(Gui, z - 2)
         GuiIdPushString(Gui, "ModMimicPopupButton" .. tostring(Windows[i].id))
-        if GuiImageButton(Gui, 1, x+99, y-14, "", "mods/ModMimic/button.png") then
+        if GuiImageButton(Gui, 1, x+99, y-14, "", "mods/ImmersiveMimics/button.png") then
             table.remove(Windows, i)
             goto continue
         end
         GuiIdPop(Gui)
         GuiIdPushString(Gui, "ModMimicPopupImage" .. tostring(Windows[i].id))
         GuiZSetForNextWidget(Gui, z)
-        GuiImageNinePiece(Gui, 1, x, y, ww+15, wh+5, 1, "mods/ModMimic/9piece.png", "mods/ModMimic/9piece.png")
+        GuiImageNinePiece(Gui, 1, x, y, ww+15, wh+5, 1, "mods/ImmersiveMimics/9piece.png", "mods/ImmersiveMimics/9piece.png")
         GuiZSetForNextWidget(Gui, z - 1)
-        GuiImageNinePiece(Gui, 2, x, y-15, ww+15, 12, 1, "mods/ModMimic/9pieceBar.png", "mods/ModMimic/9pieceBar.png")
+        GuiImageNinePiece(Gui, 2, x, y-15, ww+15, 12, 1, "mods/ImmersiveMimics/9pieceBar.png", "mods/ImmersiveMimics/9pieceBar.png")
         GuiIdPop(Gui)
     end
     ::continue::

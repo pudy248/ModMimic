@@ -1,3 +1,5 @@
+local _, _, d, h, m, s = GameGetDateAndTimeLocal()
+math.randomseed(h * 60 * 60 + m * 60 + s)
 local defaultText = ModTextFileGetContent("data/translations/common.csv")
 local firstLine = true
 local newStrings = {}
