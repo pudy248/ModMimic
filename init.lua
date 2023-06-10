@@ -20,7 +20,7 @@ for i=1,#enabledModList do
     if enabledModList[i] == "copis_things" then copisThingsEnabled = true end
 end
 
-local no_copi_override = true --for testing translations
+local no_copi_override = false --for testing translations
 
 if (not no_copi_override) and copisThingsInstalled and not copisThingsEnabled then
     --make more random later
