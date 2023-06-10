@@ -16,8 +16,8 @@ local copisThingsInstalled = ModTextFileGetContent("mods/copis_things/init.lua")
 local copisThingsEnabled = false
 
 local enabledModList = ModGetActiveModIDs()
-for _,v in ipairs(enabledModList) do
-    if v == "copis_things" then copisThingsEnabled = true end
+for i=1,#enabledModList do
+    if enabledModList[i] == "copis_things" then copisThingsEnabled = true end
 end
 
 local no_copi_override = true --for testing translations
@@ -27,8 +27,8 @@ if (not no_copi_override) and copisThingsInstalled and not copisThingsEnabled th
     local selectedMod = "copis_things"
 
     if(dataFiles[selectedMod] ~= nil) then
-        for k,v in ipairs(dataFiles[selectedMod]) do
-            ModTextFileSetContent("data/"..v, ModTextFileGetContent("mods/"..selectedMod.."/data/"..v))
+        for i=1,#dataFiles[selectedMod] do
+            ModTextFileSetContent(table.concat{"data/",dataFiles[selectedMod][i]}, ModTextFileGetContent(table.concat{"mods/", selectedMod, "/data/", dataFiles[selectedMod][i]}))
         end
     end
 
