@@ -66,8 +66,7 @@ else
             --print(middlePortion)
             local rnd = math.random()
             if rnd < 0.01 then middlePortion = "https://github.com/Ramiels/copis_things/" .. middlePortion
-            elseif rnd < 0.1 then middlePortion = "Download Copi's Things! - " .. middlePortion
-            elseif rnd < 0.12 then middlePortion = "If you download it the ads will go away... " .. middlePortion end
+            elseif rnd < 0.11 then middlePortion = "Download Copi's Things! - " .. middlePortion
             local endPortion = string.sub(line, secondComma, string.len(line))
 
             newStrings[#newStrings+1] = firstPortion .. middlePortion .. endPortion
